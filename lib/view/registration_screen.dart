@@ -6,125 +6,194 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-          children: [
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  Color(0xff25364A),
-                  Color(0xff25364A),
-                ]),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.only(top: 110.0, left: 60),
-                child: Text(
-                  'Create Your Account',
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
+      resizeToAvoidBottomInset: true, // Ensures layout resizes when keyboard is open
+      body: Stack(
+        children: [
+          // Background Gradient
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xff25364A), Color(0xff25364A)],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 200.0),
-              child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40), topRight: Radius.circular(40)),
-                  color: Colors.white,
+            child: Column(
+              children: [
+                // Image at the top
+                Padding(
+                  padding: const EdgeInsets.only(top: 40.0), // Adjust top padding as needed
+                  child: Image.asset(
+                    'assets/images/logo.png', // Replace with your image asset path
+                    height: 100, // Adjust size as needed
+                  ),
                 ),
-                height: double.infinity,
-                width: double.infinity,
-                child:  Padding(
-                  padding: const EdgeInsets.only(left: 18.0,right: 18),
+                // "Create Your Account" Text
+                const Padding(
+                  padding: EdgeInsets.only(top: 10.0, left: 20),
+                  child: Text(
+                    'Create Your Account',
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Form Section
+          Padding(
+            padding: const EdgeInsets.only(top: 200.0),
+            child: Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+                color: Colors.white,
+              ),
+              height: double.infinity,
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: SingleChildScrollView(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const TextField(
-                        decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.check,color: Colors.grey,),
-                            label: Text('Full Name',style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color:Color(0xff212121),
-                            ),)
-                        ),
-                      ),
-                      const TextField(
-                        decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.check,color: Colors.grey,),
-                            label: Text('Phone or Gmail',style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color:Color(0xff212121),
-                            ),)
-                        ),
-                      ),
-                      const TextField(
-                        decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.visibility_off,color: Colors.grey,),
-                            label: Text('Password',style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color:Color(0xff212121),
-                            ),)
-                        ),
-                      ),
-                      const TextField(
-                        decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.visibility_off,color: Colors.grey,),
-                            label: Text('Confirm Password',style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color:Color(0xff212121),
-                            ),)
-                        ),
-                      ),
+                      const SizedBox(height: 40),
 
-                      const SizedBox(height: 10,),
-                      const SizedBox(height: 70,),
+                      // Full Name TextField
+                      const TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Full Name',
+                          labelStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff212121),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(25)),
+                          ),
+                          filled: true,
+                          fillColor: Color(0xffF6F6F6),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+
+                      // Phone or Email TextField
+                      const TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Phone or Gmail',
+                          labelStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff212121),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(25)),
+                          ),
+                          filled: true,
+                          fillColor: Color(0xffF6F6F6),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+
+                      // Password TextField
+                      const TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          labelStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff212121),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(25)),
+                          ),
+                          filled: true,
+                          fillColor: Color(0xffF6F6F6),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+
+                      // Confirm Password TextField
+                      const TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: 'Confirm Password',
+                          labelStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff212121),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(25)),
+                          ),
+                          filled: true,
+                          fillColor: Color(0xffF6F6F6),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+
+                      // Sign Up Button
                       Container(
                         height: 55,
                         width: 300,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                           gradient: const LinearGradient(
-                              colors: [
-                                Color(0xff25364A),
-                                Color(0xff25364A),
-                              ]
+                            colors: [Color(0xff25364A), Color(0xff25364A)],
                           ),
                         ),
-                        child: const Center(child: Text('SIGN UP',style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.white
-                        ),),),
-                      ),
-                      const SizedBox(height: 80,),
-                      const Align(
-                        alignment: Alignment.bottomRight,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text("Already have an account",style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey
-                            ),),
-                            Text("Sign in",style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                                color: Colors.black
-                            ),),
-                          ],
+                        child: const Center(
+                          child: Text(
+                            'SIGN UP',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
-                      )
+                      ),
+                      const SizedBox(height: 50),
+
+                      // Already have an account text
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Already have an account?",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                              fontSize: 20,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context); // Go to login screen
+                            },
+                            child: const Text(
+                              "Sign in",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 19,
+                                  color: Colors.black),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

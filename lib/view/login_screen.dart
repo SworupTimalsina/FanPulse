@@ -75,12 +75,12 @@ class LoginScreen extends StatelessWidget {
                           labelText: 'Email',
                           labelStyle: TextStyle(
                             fontSize: 20,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.bold,
                             color: Color(0xff212121),
                           ),
                           suffixIcon: Icon(Icons.check, color: Colors.grey),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            borderRadius: BorderRadius.all(Radius.circular(25)),
                           ),
                           filled: true,
                           fillColor: Color(0xffF6F6F6),
@@ -94,12 +94,12 @@ class LoginScreen extends StatelessWidget {
                           labelText: 'Password',
                           labelStyle: TextStyle(
                             fontSize: 20,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.bold,
                             color: Color(0xff212121),
                           ),
                           suffixIcon: Icon(Icons.visibility_off, color: Colors.grey),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            borderRadius: BorderRadius.all(Radius.circular(25)),
                           ),
                           filled: true,
                           fillColor: Color(0xffF6F6F6),
