@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'registration_screen.dart';
-
 import 'login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -13,82 +12,135 @@ class WelcomeScreen extends StatelessWidget {
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-                  Color(0xff25364A),
-                  Color(0xff25364A),
-                ]
-            )
+          gradient: LinearGradient(
+            colors: [
+              Color(0xff25364A),
+              Color(0xff25364A),
+            ],
+          ),
         ),
         child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 90.0),
-                child: Image(image: AssetImage('assets/images/logo.png')),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(top: 90.0),
+              child: Image(
+                image: AssetImage('assets/images/logo.png'),
+                height: 200, // Adjusted height for better balance
               ),
-              const SizedBox(
-                height: 100,
+            ),
+            const SizedBox(height: 60),
+            const Text(
+              'Welcome Back',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
-              const Text('Welcome Back',style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.white
-              ),),
-              const SizedBox(height: 30,),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const LoginScreen()));
-                },
-                child: Container(
-                  height: 53,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: Colors.white),
-                  ),
-                  child: const Center(child: Text('SIGN IN',style: TextStyle(
+            ),
+            const SizedBox(height: 40),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              },
+              child: Container(
+                height: 55,
+                width: 320,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: Colors.white),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 8,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: const Center(
+                  child: Text(
+                    'SIGN IN',
+                    style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white
-                  ),),),
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
               ),
-              const SizedBox(height: 30,),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const RegisterScreen()));
-                },
-                child: Container(
-                  height: 53,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: Colors.white),
-                  ),
-                  child: const Center(child: Text('SIGN UP',style: TextStyle(
+            ),
+            const SizedBox(height: 30),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const RegisterScreen()),
+                );
+              },
+              child: Container(
+                height: 55,
+                width: 320,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 8,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: const Center(
+                  child: Text(
+                    'SIGN UP',
+                    style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black
-                  ),),),
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
               ),
-              const Spacer(),
-              const Text('Login with ',style: TextStyle(
-                  fontSize: 17,
-                  color: Colors.white
-              ),),//
-              const SizedBox(height: 12),
-              SizedBox(
-                height: 80, // Adjust the height as desired
-                width: 80,  // Adjust the width as desired
-                child: Image(image: AssetImage('assets/images/google.png')),
+            ),
+            const Spacer(),
+            const Text(
+              'Login with',
+              style: TextStyle(
+                fontWeight:FontWeight.bold,
+                fontSize: 22,
+                color: Colors.white,
               ),
-            ]
+            ),
+            const SizedBox(height: 12),
+            Container(
+              height: 70,
+              width: 70,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black38,
+                    blurRadius: 8,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/google.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            const SizedBox(height: 40),
+          ],
         ),
       ),
-
     );
   }
 }
