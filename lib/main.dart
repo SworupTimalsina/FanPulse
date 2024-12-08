@@ -2,6 +2,7 @@ import 'package:fanpulse/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fanpulse/view/welcome_screen.dart';
 import 'package:fanpulse/view/login_screen.dart';
+import 'package:fanpulse/view/registration_screen.dart';
 import 'package:fanpulse/constants.dart';
 
 void main() => runApp(MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: LoginScreen(),
+      home: RegisterScreen(),
     );
   }
 }

@@ -85,31 +85,31 @@ class LoginScreen extends StatelessWidget {
                               ]
                           ),
                         ),
-                        child: const Center(child: Text('SIGN IN',style: TextStyle(
+                        child: const Center(child: Text('SIGN UP',style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                             color: Colors.white
                         ),),),
                       ),
-                      // const SizedBox(height: 150,),
-                      // const Align(
-                      //   alignment: Alignment.bottomRight,
-                      //   child: Column(
-                      //     mainAxisAlignment: MainAxisAlignment.end,
-                      //     crossAxisAlignment: CrossAxisAlignment.end,
-                      //     children: [
-                      //       Text("Don't have account?",style: TextStyle(
-                      //           fontWeight: FontWeight.bold,
-                      //           color: Colors.grey
-                      //       ),),
-                      //       Text("Sign up",style: TextStyle(
-                      //           fontWeight: FontWeight.bold,
-                      //           fontSize: 17,
-                      //           color: Colors.black
-                      //       ),),
-                      //     ],
-                      //   ),
-                      // )
+                      const SizedBox(height: 150,),
+                      const Align(
+                        alignment: Alignment.bottomRight,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text("Don't have account?",style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey
+                            ),),
+                            Text("Sign up",style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                                color: Colors.black
+                            ),),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
