@@ -1,7 +1,7 @@
-import 'package:fanpulse/view/forgot_password_screen.dart';
-import 'package:fanpulse/view/registration_screen.dart';
+import 'package:fanpulse/view/forgot_password_screen_view.dart';
+import 'package:fanpulse/view/registration_screen_view.dart';
 import 'package:flutter/material.dart';
-import 'dashboard_screen.dart';
+import 'dashboard_screen_view.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
