@@ -182,7 +182,9 @@ class RegisterScreen extends StatelessWidget {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 19,
-                                  color: Colors.black),
+                                  color: Colors.black,
+                                  decoration: TextDecoration
+                                      .underline), // Adding underline
                             ),
                           ),
                         ],
