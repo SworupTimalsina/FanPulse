@@ -21,7 +21,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       'image': 'assets/images/onboard1.png',
     },
     {
-      'title': '"Stay Updated with Live Scores',
+      'title': 'Stay Updated with Live Scores',
       'description':
           'Get alerts for matches, scores, and news that matter most to you.',
       'image': 'assets/images/onboard2.png',
@@ -29,7 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     {
       'title': 'Live Chats',
       'description':
-          'Join live chats, share your opinions, and be part of the action!.',
+          'Join live chats, share your opinions, and be part of the action!',
       'image': 'assets/images/onboard3.png',
     },
   ];
@@ -46,7 +46,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff25364A),
+      backgroundColor: const Color(0xff25364A),
       body: Column(
         children: [
           Expanded(
@@ -82,7 +82,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         _onboardingData[index]['description']!,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                            fontSize: 16, color: Colors.white70),
+                          fontSize: 16,
+                          color: Colors.white70,
+                        ),
                       ),
                     ),
                   ],
@@ -96,8 +98,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
-                  onPressed: () =>
-                      _pageController.jumpToPage(_onboardingData.length - 1),
+                  onPressed: _onDone, // Directly call the _onDone method
                   child: const Text(
                     'Skip',
                     style: TextStyle(color: Colors.white, fontSize: 16),
