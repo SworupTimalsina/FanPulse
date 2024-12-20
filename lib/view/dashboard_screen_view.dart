@@ -1,10 +1,12 @@
-import 'package:fanpulse/view/bottom bar/articles_screen_view.dart';
-import 'package:fanpulse/view/bottom bar/messages_screen_view.dart';
-import 'package:fanpulse/view/bottom bar/setting_screen_view.dart';
+import 'package:fanpulse/view/bottom%20bar/articles_screen_view.dart';
+import 'package:fanpulse/view/bottom%20bar/messages_screen_view.dart';
+import 'package:fanpulse/view/bottom%20bar/setting_screen_view.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key});
+  final String username;
+
+  const DashboardScreen({super.key, required this.username});
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
@@ -18,11 +20,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 100),
+          const SizedBox(height: 100),
           _buildRectangleBox("First Box"),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           _buildRectangleBox("Second Box"),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           _buildRectangleBox("Third Box"),
         ],
       ),
@@ -37,9 +39,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff25364A),
-        title: Image.asset(
-          'assets/images/logo.png',
-          height: 60,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/logo.png',
+              height: 60,
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                'Welcome, ${widget.username}!',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
         ),
         centerTitle: true,
       ),

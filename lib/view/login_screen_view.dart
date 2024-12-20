@@ -154,7 +154,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const DashboardScreen(),
+                                builder: (context) => DashboardScreen(
+                                    username: email), // Pass username
                               ),
                             );
 
