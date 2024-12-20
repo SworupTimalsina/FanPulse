@@ -1,22 +1,36 @@
 import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  int _selectedIndex = 0; // Track the selected icon index
+
+  // Titles for each screen
+  final List<String> _titles = [
+    'Home',
+    'Messages',
+    'Articles',
+    'Settings',
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff25364A),
+        backgroundColor: const Color(0xff25364A),
         title: Image.asset(
           'assets/images/logo.png',
-          height: 40, // Adjust height to fit nicely
+          height: 80,
         ),
         centerTitle: true,
       ),
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             height: double.infinity,
             width: double.infinity,
@@ -29,8 +43,8 @@ class DashboardScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Center(
                 child: Text(
-                  'Welcome to Your Dashboard',
-                  style: TextStyle(
+                  _titles[_selectedIndex],
+                  style: const TextStyle(
                     fontSize: 24,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -40,38 +54,37 @@ class DashboardScreen extends StatelessWidget {
               ),
             ),
           ),
-
-          // Middle Content Section
-          Positioned(
-            top: 100,
-            left: 16.0,
-            right: 16.0,
-            child: Column(
-              children: [
-                _buildRectangleBox(""),
-                SizedBox(height: 16.0),
-                _buildRectangleBox(""),
-                SizedBox(height: 16.0),
-                _buildRectangleBox(""),
-              ],
+          if (_selectedIndex == 0)
+            Positioned(
+              top: 100,
+              left: 16.0,
+              right: 16.0,
+              child: Column(
+                children: [
+                  _buildRectangleBox(""),
+                  const SizedBox(height: 16.0),
+                  _buildRectangleBox(""),
+                  const SizedBox(height: 16.0),
+                  _buildRectangleBox(""),
+                ],
+              ),
             ),
-          ),
         ],
       ),
-
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           border: Border(
             top: BorderSide(
-              color: Color(0xff25364A), 
-              width: 2, 
+              color: Color(0xff25364A),
+              width: 2,
             ),
           ),
         ),
         child: BottomAppBar(
-          color: Colors.white, 
+          color: Colors.white,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -88,29 +101,44 @@ class DashboardScreen extends StatelessWidget {
   }
 
   Widget _buildNavItem(IconData icon, int index) {
-    bool isSelected = index == 0; 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: isSelected ? Colors.red : Colors.transparent,
-            shape: BoxShape.circle,
+    bool isSelected = index == _selectedIndex;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: isSelected ? Colors.red : Colors.transparent,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              icon,
+              color: const Color(0xff25364A),
+            ),
           ),
-          child: IconButton(
-            icon: Icon(icon, color: Color(0xff25364A)),
-            onPressed: () {
-              // Handle icon button action
-            },
+          const SizedBox(height: 4.0),
+          Text(
+            _titles[index],
+            style: TextStyle(
+              fontSize: 12,
+              color: isSelected
+                  ? Colors.red
+                  : const Color(0xff25364A).withOpacity(0.7),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget _buildRectangleBox(String title) {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8.0),
@@ -119,7 +147,7 @@ class DashboardScreen extends StatelessWidget {
             color: Colors.grey.withOpacity(0.1),
             spreadRadius: 4,
             blurRadius: 8,
-            offset: Offset(0, 4),
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -128,30 +156,31 @@ class DashboardScreen extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Color(0xff25364A),
             ),
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           Text(
             '',
             style: TextStyle(
               fontSize: 14,
-              color: Color(0xff25364A).withOpacity(0.7),
+              color: const Color(0xff25364A).withOpacity(0.7),
             ),
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           Align(
             alignment: Alignment.center,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
               decoration: BoxDecoration(
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(4.0),
               ),
-              child: Text(
+              child: const Text(
                 'View All',
                 style: TextStyle(
                   fontSize: 12,
