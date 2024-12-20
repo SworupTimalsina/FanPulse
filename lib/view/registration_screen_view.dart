@@ -6,7 +6,8 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true, // Ensures layout resizes when keyboard is open
+      resizeToAvoidBottomInset:
+          true, // Ensures layout resizes when keyboard is open
       body: Stack(
         children: [
           // Background Gradient
@@ -21,10 +22,10 @@ class RegisterScreen extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 40.0), 
+                  padding: const EdgeInsets.only(top: 40.0),
                   child: Image.asset(
-                    'assets/images/logo.png', 
-                    height: 100, 
+                    'assets/images/logo.png',
+                    height: 100,
                   ),
                 ),
                 const Padding(
@@ -48,7 +49,8 @@ class RegisterScreen extends StatelessWidget {
             child: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40)),
                 color: Colors.white,
               ),
               height: double.infinity,
@@ -148,7 +150,7 @@ class RegisterScreen extends StatelessWidget {
                         ),
                         child: const Center(
                           child: Text(
-                            'SIGN UP',
+                            'REGISTER',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,

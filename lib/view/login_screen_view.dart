@@ -1,6 +1,7 @@
 import 'package:fanpulse/view/forgot_password_screen_view.dart';
 import 'package:fanpulse/view/registration_screen_view.dart';
 import 'package:flutter/material.dart';
+
 import 'dashboard_screen_view.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -128,7 +129,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ForgotPasswordScreen(),
+                                builder: (context) =>
+                                    const ForgotPasswordScreen(),
                               ),
                             );
                           },
@@ -191,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           child: const Center(
                             child: Text(
-                              'SIGN IN',
+                              'LOG IN',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
@@ -220,12 +222,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const RegisterScreen(),
+                                    builder: (context) =>
+                                        const RegisterScreen(),
                                   ),
                                 );
                               },
                               child: const Text(
-                                'Sign Up',
+                                'Register',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
