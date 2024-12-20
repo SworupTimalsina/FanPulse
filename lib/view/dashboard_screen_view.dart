@@ -1,3 +1,6 @@
+import 'package:fanpulse/view/bottom bar/articles_screen_view.dart';
+import 'package:fanpulse/view/bottom bar/messages_screen_view.dart';
+import 'package:fanpulse/view/bottom bar/setting_screen_view.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -8,14 +11,25 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  int _selectedIndex = 0; // Track the selected icon index
+  int _selectedIndex = 0;
 
-  // Titles for each screen
-  final List<String> _titles = [
-    'Home',
-    'Messages',
-    'Articles',
-    'Settings',
+  final List<Widget> _screens = [
+    Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(height: 100),
+          _buildRectangleBox("First Box"),
+          SizedBox(height: 16),
+          _buildRectangleBox("Second Box"),
+          SizedBox(height: 16),
+          _buildRectangleBox("Third Box"),
+        ],
+      ),
+    ),
+    const MessagesScreen(),
+    const ArticlesScreen(),
+    const SettingsScreen(),
   ];
 
   @override
@@ -25,118 +39,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
         backgroundColor: const Color(0xff25364A),
         title: Image.asset(
           'assets/images/logo.png',
-          height: 80,
+          height: 60,
         ),
         centerTitle: true,
       ),
-      body: Stack(
-        children: [
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xff25364A), Color(0xff25364A)],
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Center(
-                child: Text(
-                  _titles[_selectedIndex],
-                  style: const TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ),
-          if (_selectedIndex == 0)
-            Positioned(
-              top: 100,
-              left: 16.0,
-              right: 16.0,
-              child: Column(
-                children: [
-                  _buildRectangleBox(""),
-                  const SizedBox(height: 16.0),
-                  _buildRectangleBox(""),
-                  const SizedBox(height: 16.0),
-                  _buildRectangleBox(""),
-                ],
-              ),
-            ),
-        ],
-      ),
-      bottomNavigationBar: Container(
+      body: Container(
         decoration: const BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: Color(0xff25364A),
-              width: 2,
-            ),
+          gradient: LinearGradient(
+            colors: [Color(0xff25364A), Color(0xff25364A)],
           ),
         ),
-        child: BottomAppBar(
-          color: Colors.white,
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildNavItem(Icons.home, 0),
-                _buildNavItem(Icons.message, 1),
-                _buildNavItem(Icons.article, 2),
-                _buildNavItem(Icons.settings, 3),
-              ],
-            ),
-          ),
-        ),
+        child: _screens[_selectedIndex],
       ),
-    );
-  }
-
-  Widget _buildNavItem(IconData icon, int index) {
-    bool isSelected = index == _selectedIndex;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedIndex = index;
-        });
-      },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: isSelected ? Colors.red : Colors.transparent,
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              icon,
-              color: const Color(0xff25364A),
-            ),
-          ),
-          const SizedBox(height: 4.0),
-          Text(
-            _titles[index],
-            style: TextStyle(
-              fontSize: 12,
-              color: isSelected
-                  ? Colors.red
-                  : const Color(0xff25364A).withOpacity(0.7),
-            ),
-          ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.red,
+        unselectedItemColor: const Color(0xff25364A),
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Messages'),
+          BottomNavigationBarItem(icon: Icon(Icons.article), label: 'Articles'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: 'Settings'),
         ],
       ),
     );
   }
 
-  Widget _buildRectangleBox(String title) {
+  static Widget _buildRectangleBox(String title) {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
@@ -178,7 +113,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
               decoration: BoxDecoration(
                 color: Colors.red,
-                borderRadius: BorderRadius.circular(4.0),
+                borderRadius: BorderRadius.circular(8.0),
               ),
               child: const Text(
                 'View All',

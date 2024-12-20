@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'login_screen_view.dart'; // Import the login screen.
+
+import 'login_screen_view.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
+  const OnboardingScreen({super.key});
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -21,12 +22,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     },
     {
       'title': '"Stay Updated with Live Scores',
-      'description': 'Get alerts for matches, scores, and news that matter most to you.',
+      'description':
+          'Get alerts for matches, scores, and news that matter most to you.',
       'image': 'assets/images/onboard2.png',
     },
     {
       'title': 'Live Chats',
-      'description': 'Join live chats, share your opinions, and be part of the action!.',
+      'description':
+          'Join live chats, share your opinions, and be part of the action!.',
       'image': 'assets/images/onboard3.png',
     },
   ];
@@ -43,7 +46,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff25364A), // Use the primary color from LoginScreen
+      backgroundColor: Color(0xff25364A),
       body: Column(
         children: [
           Expanded(
@@ -69,7 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white, // White text for contrast
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -78,8 +81,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       child: Text(
                         _onboardingData[index]['description']!,
                         textAlign: TextAlign.center,
-                        style:
-                            const TextStyle(fontSize: 16, color: Colors.white70),
+                        style: const TextStyle(
+                            fontSize: 16, color: Colors.white70),
                       ),
                     ),
                   ],
