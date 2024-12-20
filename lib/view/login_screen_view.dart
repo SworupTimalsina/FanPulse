@@ -140,6 +140,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                               color: Color(0xffB81736),
+                              decoration:
+                                  TextDecoration.underline, // Adding underline
                             ),
                           ),
                         ),
@@ -234,6 +236,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
                                   color: Colors.black,
+                                  decoration: TextDecoration
+                                      .underline, // Adding underline
                                 ),
                               ),
                             ),
