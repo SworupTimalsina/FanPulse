@@ -1,6 +1,6 @@
-import 'package:fanpulse/view/bottom%20bar/articles_screen_view.dart';
-import 'package:fanpulse/view/bottom%20bar/messages_screen_view.dart';
-import 'package:fanpulse/view/bottom%20bar/setting_screen_view.dart';
+import 'package:fanpulse/features/view/bottom%20bar/articles_screen_view.dart';
+import 'package:fanpulse/features/view/bottom%20bar/messages_screen_view.dart';
+import 'package:fanpulse/features/view/bottom%20bar/setting_screen_view.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {

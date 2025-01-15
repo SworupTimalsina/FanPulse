@@ -1,5 +1,5 @@
-import 'package:fanpulse/view/forgot_password_screen_view.dart';
-import 'package:fanpulse/view/registration_screen_view.dart';
+import 'package:fanpulse/features/view/forgot_password_screen_view.dart';
+import 'package:fanpulse/features/view/registration_screen_view.dart';
 import 'package:flutter/material.dart';
 
 import 'dashboard_screen_view.dart';

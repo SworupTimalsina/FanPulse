@@ -1,4 +1,4 @@
-import 'package:fanpulse/constants.dart';
+import 'package:fanpulse/app/constants/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 ThemeData getApplicationTheme() {

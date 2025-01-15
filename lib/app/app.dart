@@ -1,5 +1,5 @@
-import 'package:fanpulse/core/app_theme1/app_theme.dart';
-import 'package:fanpulse/view/splashscreen_view.dart';
+import 'package:fanpulse/core/theme/app_theme.dart';
+import 'package:fanpulse/features/view/splashscreen_view.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
