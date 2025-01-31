@@ -1,4 +1,7 @@
+import 'package:fanpulse/core/common/snackbar/my_snackbar.dart';
+import 'package:fanpulse/features/home/presentation/view_model/home_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(SportsBlogApp());
@@ -47,12 +50,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Sports Blog",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: const Text(
+          'FanPulse',
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Color(0xff25364A),
-        foregroundColor: Colors.white,
+        centerTitle: true,
+        actions: [
+          Switch(
+            value: false,
+            onChanged: (value) {
+              // Change theme
+              // setState(() {
+              //   _isDarkTheme = value;
+              // });
+            },
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              // Logout code
+              showMySnackBar(
+                context: context,
+                message: 'Logging out...',
+                color: Colors.red,
+              );
+
+              context.read<HomeCubit>().logout(context);
+            },
+          ),
+        ],
       ),
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(

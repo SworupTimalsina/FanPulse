@@ -159,7 +159,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             radius: 60,
                             backgroundImage: _img != null
                                 ? FileImage(_img!)
-                                : const AssetImage('assets/images/profile.jpg')
+                                : const AssetImage('assets/images/profile.png')
                                     as ImageProvider,
                           ),
                         ),
