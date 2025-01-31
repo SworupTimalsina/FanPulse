@@ -1,8 +1,8 @@
+import 'package:fanpulse/features/auth/presentation/view/registration_screen_view.dart';
+import 'package:fanpulse/features/auth/presentation/viewmodel/login/login_bloc.dart';
 import 'package:fanpulse/features/view/forgot_password_screen_view.dart';
-import 'package:fanpulse/features/view/registration_screen_view.dart';
 import 'package:flutter/material.dart';
-
-import 'dashboard_screen_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -149,34 +149,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 50),
                       GestureDetector(
                         onTap: () {
-                          String email = emailController.text.trim();
-                          String password = passwordController.text.trim();
-
-                          if (email == 'admin' && password == 'admin') {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DashboardScreen(
-                                    username: email), // Pass username
-                              ),
-                            );
-
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: const Text('Login successful!'),
-                                backgroundColor: Colors.green,
-                                behavior: SnackBarBehavior.floating,
-                              ),
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: const Text('Invalid credentials'),
-                                backgroundColor: Colors.red,
-                                behavior: SnackBarBehavior.floating,
-                              ),
-                            );
-                          }
+                          context.read<LoginBloc>().add(
+                                LoginUserEvent(
+                                  context: context,
+                                  username: emailController.text,
+                                  password: passwordController.text,
+                                ),
+                              );
                         },
                         child: Container(
                           height: 55,
@@ -222,13 +201,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             TextButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const RegisterScreen(),
-                                  ),
-                                );
+                                context.read<LoginBloc>().add(
+                                      NavigateRegisterScreenEvent(
+                                        destination: RegisterScreen(),
+                                        context: context,
+                                      ),
+                                    );
                               },
                               child: const Text(
                                 'Register',

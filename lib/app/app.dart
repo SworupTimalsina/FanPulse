@@ -1,17 +1,23 @@
+import 'package:fanpulse/app/di/di.dart';
 import 'package:fanpulse/core/theme/app_theme.dart';
-import 'package:fanpulse/features/view/splashscreen_view.dart';
+import 'package:fanpulse/features/splash/presentation/view/splash_view.dart';
+import 'package:fanpulse/features/splash/presentation/view_model/splash_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'FanPulse',
-      theme: getApplicationTheme(),
-      home: const SplashScreen(),
+      theme: AppTheme.getApplicationTheme(),
+      home: BlocProvider.value(
+        value: getIt<SplashCubit>(),
+        child: SplashView(),
+      ),
     );
   }
 }
