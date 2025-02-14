@@ -57,8 +57,6 @@ dependencies:
   carousel_slider: ^5.0.0
   flutter_test:
     sdk: flutter
-  flutter_test:
-    sdk: flutter
   test_cov_console: ^0.2.2
 
 
