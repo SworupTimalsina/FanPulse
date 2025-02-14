@@ -1,12 +1,12 @@
-import 'package:fanpulse/features/auth/presentation/view/login_screen_view.dart';
-import 'package:fanpulse/features/auth/presentation/viewmodel/login/login_bloc.dart';
+import 'package:fanpulse/features/splash/presentation/view/onboarding_screen_view.dart';
+import 'package:fanpulse/features/splash/presentation/view_model/onboarding_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashCubit extends Cubit<void> {
-  SplashCubit(this._loginBloc) : super(null);
+  SplashCubit(this._onboardingCubit) : super(null);
 
-  final LoginBloc _loginBloc;
+  final OnboardingCubit _onboardingCubit;
 
   Future<void> init(BuildContext context) async {
     await Future.delayed(const Duration(seconds: 2), () async {
@@ -17,8 +17,8 @@ class SplashCubit extends Cubit<void> {
           context,
           MaterialPageRoute(
             builder: (context) => BlocProvider.value(
-              value: _loginBloc,
-              child: LoginScreen(),
+              value: _onboardingCubit,
+              child: const OnboardingScreen(),
             ),
           ),
         );

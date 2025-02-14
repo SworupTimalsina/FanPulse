@@ -12,6 +12,7 @@ import 'package:fanpulse/features/auth/domain/use_case/upload_image_use_case.dar
 import 'package:fanpulse/features/auth/presentation/viewmodel/login/login_bloc.dart';
 import 'package:fanpulse/features/auth/presentation/viewmodel/signup/register_bloc.dart';
 import 'package:fanpulse/features/home/presentation/view_model/home_cubit.dart';
+import 'package:fanpulse/features/splash/presentation/view_model/onboarding_cubit.dart';
 import 'package:fanpulse/features/splash/presentation/view_model/splash_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,6 +27,7 @@ Future<void> initDependencies() async {
   await _initHomeDependencies();
   await _initRegisterDependencies();
   await _initLoginDependencies();
+  await _initOnboardingScreenDependencies();
 
   await _initSplashScreenDependencies();
 }
@@ -114,6 +116,12 @@ _initLoginDependencies() async {
 
 _initSplashScreenDependencies() async {
   getIt.registerFactory<SplashCubit>(
-    () => SplashCubit(getIt<LoginBloc>()),
+    () => SplashCubit(getIt<OnboardingCubit>()),
+  );
+}
+
+_initOnboardingScreenDependencies() async {
+  getIt.registerFactory<OnboardingCubit>(
+    () => OnboardingCubit(),
   );
 }
