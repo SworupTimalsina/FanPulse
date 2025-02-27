@@ -2,8 +2,10 @@ import 'package:equatable/equatable.dart';
 import 'package:fanpulse/core/common/snackbar/my_snackbar.dart';
 import 'package:fanpulse/features/auth/domain/use_case/login_usecase.dart';
 import 'package:fanpulse/features/auth/presentation/viewmodel/signup/register_bloc.dart';
-import 'package:fanpulse/features/home/presentation/view/dashboard_screen_view.dart';
+// import 'package:fanpulse/features/home/presentation/view/dashboard_screen_view.dart';
+import 'package:fanpulse/features/home/presentation/view/home_view.dart';
 import 'package:fanpulse/features/home/presentation/view_model/home_cubit.dart';
+// import 'package:fanpulse/features/home/presentation/view_model/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -77,7 +79,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             add(
               NavigateHomeScreenEvent(
                 context: event.context,
-                destination: DashboardScreen(),
+                destination: HomeView(),
               ),
             );
             //_homeCubit.setToken(token);
