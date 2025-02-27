@@ -12,64 +12,74 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue.shade50, // Light blue background
       appBar: AppBar(
         title: const Text('Home'),
         centerTitle: true,
+        backgroundColor: Colors.blue, // Blue AppBar
+        foregroundColor: Colors.white, // White text and icons
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
+            color: Colors.white, // Icon color
             onPressed: () {
-              // Logout code
               showMySnackBar(
                 context: context,
                 message: 'Logging out...',
                 color: Colors.red,
               );
-
               context.read<HomeCubit>().logout(context);
             },
           ),
           Switch(
             value: _isDarkTheme,
             onChanged: (value) {
-              // Change theme
-              // setState(() {
-              //   _isDarkTheme = value;
-              // });
+              // Handle theme switch
             },
+            activeColor: Colors.white, // Switch thumb color
+            activeTrackColor: Colors.lightBlueAccent, // Switch track color
           ),
         ],
       ),
-      // body: _views.elementAt(_selectedIndex),
-      body: BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
-        return state.views.elementAt(state.selectedIndex);
-      }),
+      body: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          return state.views.elementAt(state.selectedIndex);
+        },
+      ),
       bottomNavigationBar: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          return BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.dashboard),
-                label: 'Dashboard',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.book),
-                label: 'Article',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.group),
-                label: 'Messages',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle),
-                label: 'Account',
-              ),
-            ],
-            currentIndex: state.selectedIndex,
-            selectedItemColor: Colors.white,
-            onTap: (index) {
-              context.read<HomeCubit>().onTabTapped(index);
-            },
+          return Container(
+            color: Colors.blue, // Ensures blue background
+            child: BottomNavigationBar(
+              type:
+                  BottomNavigationBarType.fixed, // Prevents background override
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.dashboard),
+                  label: 'Dashboard',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.book),
+                  label: 'Article',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.group),
+                  label: 'Messages',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.account_circle),
+                  label: 'Account',
+                ),
+              ],
+              backgroundColor: Colors.blue, // Sets navbar background
+              currentIndex: state.selectedIndex,
+              selectedItemColor: Colors.white, // White for selected item
+              unselectedItemColor:
+                  Colors.white70, // Light white for unselected items
+              onTap: (index) {
+                context.read<HomeCubit>().onTabTapped(index);
+              },
+            ),
           );
         },
       ),
