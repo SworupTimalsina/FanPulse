@@ -12,4 +12,10 @@ class ApiEndpoints {
   static const String register = "auth/register";
   static const String imageUrl = "http://10.0.2.2:3000/uploads/";
   static const String uploadImage = "auth/uploadImage/";
+
+  // ======== Articles ===============
+  static const String createArticle = "article/add";
+  static const String updateArticle = "article/";
+  static const String deleteArticle = "article/";
+  static const String getAllArticles = "article";
 }
