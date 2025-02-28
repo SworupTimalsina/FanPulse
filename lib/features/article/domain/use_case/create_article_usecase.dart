@@ -1,33 +1,49 @@
-// import 'package:dartz/dartz.dart';
-// import 'package:equatable/equatable.dart';
-// import 'package:fanpulse/app/usecase/usecase.dart';
-// import 'package:fanpulse/core/error/failure.dart';
-// import 'package:fanpulse/features/article/domain/entity/article_entity.dart';
-// import 'package:fanpulse/features/article/domain/repository/article_repository.dart';
+import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
+import 'package:fanpulse/app/usecase/usecase.dart';
+import 'package:fanpulse/core/error/failure.dart';
+import 'package:fanpulse/features/article/domain/entity/article_entity.dart';
+import 'package:fanpulse/features/article/domain/repository/article_repository.dart';
 
-// class CreateArticleParams extends Equatable {
-//   final String articleName;
+class CreateArticleParams extends Equatable {
+  final String title;
+  final String content;
+  final String? image;
+  final String author;
 
-//   const CreateArticleParams({required this.articleName});
+  const CreateArticleParams({
+    required this.title,
+    required this.content,
+    this.image,
+    required this.author,
+  });
 
-//   // Empty constructor
-//   const CreateArticleParams.empty() : articleName = '_empty.string';
+  // Empty constructor
+  const CreateArticleParams.empty()
+      : title = '_empty.string',
+        content = '_empty.string',
+        image = '_empty.string',
+        author = '_empty.string';
 
-//   @override
-//   List<Object?> get props => [articleName];
-// }
+  @override
+  List<Object?> get props => [title, content, image, author];
+}
 
-// class CreateArticleUsecase
-//     implements UsecaseWithParams<void, CreateArticleParams> {
-//   final IArticleRepository _articleRepository;
+class CreateArticleUseCase
+    implements UsecaseWithParams<void, CreateArticleParams> {
+  final IArticleRepository articleRepository;
 
-//   CreateArticleUsecase({required IArticleRepository articleRepository})
-//       : _articleRepository = articleRepository;
+  CreateArticleUseCase({required this.articleRepository});
 
-//   @override
-//   Future<Either<Failure, void>> call(CreateArticleParams params) {
-//     return _articleRepository.createArticle(
-//       ArticleEntity(articleName: params.articleName),
-//     );
-//   }
-// }
+  @override
+  Future<Either<Failure, void>> call(CreateArticleParams params) async {
+    return await articleRepository.createArticle(
+      ArticleEntity(
+        title: params.title,
+        content: params.content,
+        image: params.image,
+        author: params.author,
+      ),
+    );
+  }
+}
