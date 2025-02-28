@@ -1,28 +1,53 @@
-// part of 'article_bloc.dart';
+part of 'article_bloc.dart';
 
-// sealed class ArticleEvent extends Equatable {
-//   const ArticleEvent();
+@immutable
+sealed class ArticleEvent extends Equatable {
+  const ArticleEvent();
 
-//   @override
-//   List<Object> get props => [];
-// }
+  @override
+  List<Object> get props => [];
+}
 
-// class ArticleLoad extends ArticleEvent {}
+final class LoadArticles extends ArticleEvent {}
 
-// class CreateArticle extends ArticleEvent {
-//   final String articleName;
+class LoadImage extends ArticleEvent {
+  final File file;
 
-//   const CreateArticle({required this.articleName});
+  const LoadImage({
+    required this.file,
+  });
+}
 
-//   @override
-//   List<Object> get props => [articleName];
-// }
 
-// class DeleteArticle extends ArticleEvent {
-//   final String id;
 
-//   const DeleteArticle({required this.id});
+final class AddArticle extends ArticleEvent {
 
-//   @override
-//   List<Object> get props => [id];
-// }
+  final String title;
+  final String content;
+  final String? image;
+  final String author;
+
+  const AddArticle({
+
+    required this.title,
+    required this.content,
+    this.image,
+    required this.author,
+  });
+
+  @override
+  List<Object> get props => [ title, content, author];
+}
+
+final class DeleteArticle extends ArticleEvent {
+  final String articleId;
+
+  const DeleteArticle(this.articleId);
+
+  @override
+  List<Object> get props => [articleId];
+}
+
+ 
+ 
+ 
