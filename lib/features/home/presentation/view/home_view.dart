@@ -16,7 +16,7 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home'),
         centerTitle: true,
-        backgroundColor: Colors.blue, // Blue AppBar
+        backgroundColor: Color(0xff25364A), // Blue AppBar
         foregroundColor: Colors.white, // White text and icons
         actions: [
           IconButton(
@@ -37,7 +37,7 @@ class HomeView extends StatelessWidget {
               // Handle theme switch
             },
             activeColor: Colors.white, // Switch thumb color
-            activeTrackColor: Colors.lightBlueAccent, // Switch track color
+            activeTrackColor: Color(0xff212121), // Switch track color
           ),
         ],
       ),
@@ -71,7 +71,7 @@ class HomeView extends StatelessWidget {
                   label: 'Account',
                 ),
               ],
-              backgroundColor: Colors.blue, // Sets navbar background
+              backgroundColor: Color(0xff25364A), // Sets navbar background
               currentIndex: state.selectedIndex,
               selectedItemColor: Colors.white, // White for selected item
               unselectedItemColor:
