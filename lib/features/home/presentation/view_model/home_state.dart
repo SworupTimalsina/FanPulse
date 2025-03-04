@@ -1,5 +1,12 @@
 import 'package:equatable/equatable.dart';
+import 'package:fanpulse/app/di/di.dart';
+import 'package:fanpulse/features/article/presentation/view/add_article_view.dart';
+import 'package:fanpulse/features/article/presentation/view/article_view.dart';
+import 'package:fanpulse/features/article/presentation/view_model/article_bloc.dart';
+import 'package:fanpulse/features/auth/presentation/view/profile_screen_view.dart';
+import 'package:fanpulse/features/auth/presentation/viewmodel/profile/profile_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeState extends Equatable {
   final int selectedIndex;
@@ -14,18 +21,21 @@ class HomeState extends Equatable {
   static HomeState initial() {
     return HomeState(
       selectedIndex: 0,
-      views: const [
-        Center(
-          child: Text('Dashboard'),
+      views: [
+        BlocProvider(
+          create: (context) => getIt<ArticleBloc>(),
+          child: const ArticlePage(),
         ),
-        Center(
-          child: Text('Articles'),
+        BlocProvider(
+          create: (context) => getIt<ArticleBloc>(),
+          child: const AddArticlePage(),
         ),
         Center(
           child: Text('Messages'),
         ),
-        Center(
-          child: Text('Account'),
+        BlocProvider(
+          create: (context) => getIt<ProfileBloc>(),
+          child: const ProfilePage(),
         ),
       ],
     );

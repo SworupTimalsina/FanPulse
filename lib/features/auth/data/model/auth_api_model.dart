@@ -24,6 +24,14 @@ class AuthApiModel extends Equatable {
     required this.username,
     required this.password,
   });
+  const AuthApiModel.empty()
+      : id = '_empty.string',
+        name = '_empty.string',
+        image = '_empty.string',
+        email = '_empty.string',
+        phone = '_empty.string',
+        username = '_empty.string',
+        password = '_empty.string';
 
   factory AuthApiModel.fromJson(Map<String, dynamic> json) =>
       _$AuthApiModelFromJson(json);
@@ -56,6 +64,5 @@ class AuthApiModel extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [id, name, image, phone, email, username, password];
+  List<Object?> get props => [name, image, phone, email, username, password];
 }

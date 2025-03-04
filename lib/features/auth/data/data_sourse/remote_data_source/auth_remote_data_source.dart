@@ -2,13 +2,16 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:fanpulse/app/constants/api_endpoints.dart';
+import 'package:fanpulse/app/shared_prefs/token_shared_prefs.dart';
 import 'package:fanpulse/features/auth/data/data_sourse/auth_data_source.dart';
 import 'package:fanpulse/features/auth/domain/entity/auth_entity.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRemoteDataSource implements IAuthDataSource {
   final Dio _dio;
+  final TokenSharedPrefs userIdSharedPrefs;
 
-  AuthRemoteDataSource(this._dio);
+  AuthRemoteDataSource(this._dio, this.userIdSharedPrefs);
 
   @override
   Future<void> registerUser(AuthEntity user) async {
@@ -38,8 +41,35 @@ class AuthRemoteDataSource implements IAuthDataSource {
   }
 
   @override
-  Future<AuthEntity> getCurrentUser() {
-    throw UnimplementedError();
+  Future<AuthEntity> getCurrentUser(String? token, String userId) async {
+    try {
+      Response response = await _dio.get(
+        '${ApiEndpoints.getUser}/$userId',
+        options: Options(headers: {"Authorization": "Bearer $token"}),
+      );
+
+      if (response.statusCode == 200) {
+        final data = response.data['data'];
+        print("DATA::: $data");
+        if (data == null) {
+          throw Exception("User not found");
+        }
+        return AuthEntity(
+          name: data['name'] ?? '',
+          image: data['image'] ?? '',
+          email: data['email'] ?? '',
+          phone: data['phone'] ?? '',
+          username: data['username'] ?? '',
+          password: '',
+        );
+      } else {
+        throw Exception(response.statusMessage);
+      }
+    } on DioException catch (e) {
+      throw Exception(e.response?.data['message'] ?? 'An error occurred');
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
 
   @override
@@ -53,16 +83,44 @@ class AuthRemoteDataSource implements IAuthDataSource {
         },
       );
 
-      if (response.statusCode == 200) {
-        final str = response.data['token'];
-        return str;
+      // Debugging: Print the raw response
+      print("Raw API Response: ${response.data}");
+
+      // Ensure response is valid and contains expected keys
+      if (response.statusCode == 200 && response.data != null) {
+        if (response.data is Map<String, dynamic>) {
+          print("RESPONSE lkjlkj::: ${response.data}");
+          final str = response.data['token'];
+          final cred = response.data['user'];
+          final userId = cred['_id']; // Assuming the user ID is stored in '_id'
+
+          // Save userId to shared preferences
+
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString('userId', userId);
+
+          print("CRED::: ${response.data}");
+
+          if (cred != null) {
+            userIdSharedPrefs.setUser(cred);
+            print("USER SAVED:::: $cred");
+          } else {
+            print("WARNING: 'cred' is null in API response.");
+          }
+
+          return str ?? (throw Exception("Token is null in response"));
+        } else {
+          throw Exception("Unexpected response format: ${response.data}");
+        }
       } else {
-        throw Exception(response.statusMessage);
+        throw Exception(response.statusMessage ?? "Invalid credentials");
       }
     } on DioException catch (e) {
-      throw Exception(e);
+      print("Dio Error: ${e.response?.data}"); // Debug DioException details
+      return Future.error("Network error: ${e.message}");
     } catch (e) {
-      throw Exception(e);
+      print("Unexpected Error: $e");
+      return Future.error("Unexpected error: $e");
     }
   }
 
@@ -96,6 +154,71 @@ class AuthRemoteDataSource implements IAuthDataSource {
       throw Exception(e);
     } catch (e) {
       throw Exception(e);
+    }
+  }
+
+  @override
+  Future<AuthEntity> updateUser(AuthEntity updatedUser) async {
+    try {
+      // First, get the current user data from SharedPreferences
+      var currentUser = await userIdSharedPrefs.getUser();
+      // Map<String, dynamic>? currentUser =
+      print("Current user before update: $currentUser");
+
+      // Prepare updated data by merging the current user data and the new data
+      try {
+        currentUser?['name'] = updatedUser.name;
+        currentUser?['email'] = updatedUser.email;
+        currentUser?['phone'] = updatedUser.phone;
+        currentUser?['username'] = updatedUser.username;
+        currentUser?['image'] = updatedUser.image;
+      } catch (e) {
+        print('Error $e');
+      }
+      var id = currentUser?['_id'];
+      if (updatedUser.image != null) {
+        currentUser?['image'] =
+            await MultipartFile.fromFile(updatedUser.image!);
+      } else {
+        currentUser!.remove('image');
+      }
+
+      print("abc::: $currentUser");
+
+      currentUser?.remove('__v');
+      var url = ApiEndpoints.updateUser + id;
+      print("URL::: $url");
+      // Send the update request to the backend API
+      Response response = await _dio.put(
+        ApiEndpoints.updateUser + id,
+        data: currentUser,
+        options: Options(
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+        ),
+      );
+
+      print("API Endpoint: $response");
+
+      if (response.statusCode == 200) {
+        // On success, update the local SharedPreferences with the new user data
+        Map<String, dynamic> newUserData = response.data['data'];
+        await userIdSharedPrefs.updateUser(
+          newUserData,
+        ); // Save updated user data in SharedPreferences
+
+        print("Updated user data saved in SharedPreferences: $newUserData");
+
+        // Return the updated user entity
+        return AuthEntity.fromJson(newUserData);
+      } else {
+        print("No Data updated $currentUser");
+        throw Exception('Failed to update user: ${response.statusMessage}');
+      }
+    } catch (e) {
+      throw Exception('Error updating user: $e');
     }
   }
 }
