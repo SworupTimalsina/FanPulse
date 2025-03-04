@@ -7,7 +7,7 @@ class AuthEntity extends Equatable {
   final String? image;
   final String username;
   final String phone;
-  final String password;
+  final String? password;
 
   const AuthEntity({
     this.userId,
@@ -16,10 +16,22 @@ class AuthEntity extends Equatable {
     this.image,
     required this.username,
     required this.phone,
-    required this.password,
+     this.password,
   });
 
   @override
   List<Object?> get props =>
       [userId, name, email, image, username, phone, password];
+        static fromJson(Map<String, dynamic> userMap) {
+    return AuthEntity(
+      userId: userMap['userId'],
+      name: userMap['name'] ?? '',
+      email: userMap['email'] ?? '',
+      phone: userMap['phone'] ?? '',
+      username: userMap['username'] ?? '',
+      image: userMap['image'],
+      password: '',
+    );
+  }
 }
+

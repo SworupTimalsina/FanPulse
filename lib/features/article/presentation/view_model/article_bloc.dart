@@ -11,12 +11,12 @@ import 'package:flutter/foundation.dart';
 part 'article_event.dart';
 part 'article_state.dart';
 
-class ShopBloc extends Bloc<ArticleEvent, ArticleState> {
+class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
   final CreateArticleUseCase _createArticleUseCase;
   final GetAllArticleUseCase _getAllArticleUseCase;
   final DeleteArticleUsecase _deleteArticleUsecase;
 
-  ShopBloc({
+  ArticleBloc({
     required CreateArticleUseCase createArticleUseCase,
     required GetAllArticleUseCase getAllArticleUseCase,
     required DeleteArticleUsecase deleteArticleUsecase,

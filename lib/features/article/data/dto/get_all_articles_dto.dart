@@ -5,13 +5,13 @@ part 'get_all_articles_dto.g.dart';
 
 @JsonSerializable()
 class GetAllArticlesDTO {
-  final bool success;
-  final int count;
+  // final bool success;
+  // final int count;
   final List<ArticleApiModel> data;
 
   GetAllArticlesDTO({
-    required this.success,
-    required this.count,
+    // required this.success,
+    // required this.count,
     required this.data,
   });
 
