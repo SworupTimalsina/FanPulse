@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fanpulse/features/article/domain/entity/article_entity.dart';
+import 'package:fanpulse/features/article/presentation/view/article_detail_view.dart';
 import 'package:fanpulse/features/article/presentation/view_model/article_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,37 +56,47 @@ class ArticlePage extends StatelessWidget {
                 }
               }
 
-              return Card(
-                margin: const EdgeInsets.all(8.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (article.image != null) leadingWidget,
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        article.title,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ArticleDetailPage(article: article),
+                    ),
+                  );
+                },
+                child: Card(
+                  margin: const EdgeInsets.all(8.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (article.image != null) leadingWidget,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          article.title,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0, vertical: 4.0),
-                      child: Text(
-                        article.content,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(fontSize: 14),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8.0, vertical: 4.0),
+                        child: Text(
+                          article.content,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize: 14),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                  ],
+                      const SizedBox(height: 8),
+                    ],
+                  ),
                 ),
               );
             },
@@ -94,7 +105,7 @@ class ArticlePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Navigate to article creation page
+          // Navigate to article creation page (Implement as needed)
         },
         child: const Icon(Icons.add),
       ),

@@ -5,6 +5,7 @@ import 'package:fanpulse/features/article/presentation/view/article_view.dart';
 import 'package:fanpulse/features/article/presentation/view_model/article_bloc.dart';
 import 'package:fanpulse/features/auth/presentation/view/profile_screen_view.dart';
 import 'package:fanpulse/features/auth/presentation/viewmodel/profile/profile_bloc.dart';
+import 'package:fanpulse/features/message/presentation/view/message_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,9 +31,7 @@ class HomeState extends Equatable {
           create: (context) => getIt<ArticleBloc>(),
           child: const AddArticlePage(),
         ),
-        Center(
-          child: Text('Messages'),
-        ),
+        MessagingPage(),
         BlocProvider(
           create: (context) => getIt<ProfileBloc>(),
           child: const ProfilePage(),

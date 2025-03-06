@@ -7,7 +7,6 @@ import 'package:fanpulse/features/auth/domain/use_case/update_user_usecase.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 part 'profile_event.dart';
 part 'profile_state.dart';
 
@@ -34,7 +33,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
               BlocProvider.value(value: profileBloc, child: event.destination),
         ),
       );
-});
+    });
     on<UpdateUserEvent>((event, emit) async {
       emit(state.copyWith(isLoading: true));
       try {
