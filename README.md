@@ -4,3 +4,5 @@ There are 3 onboarding screen I have kept one for example:
 ![Onboarding Screen](https://github.com/user-attachments/assets/4669b61a-3903-4a5c-876f-84604f527828)
 This is my Log in Screen:
 ![login screen](https://github.com/user-attachments/assets/e3109ef0-b2e7-424e-8dcf-01e61a061620)
+This is my Register Screen:
+![Register screen](https://github.com/user-attachments/assets/621edccc-4603-42d3-9d7a-376c20c7db81)
