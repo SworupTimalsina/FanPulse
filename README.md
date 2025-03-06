@@ -12,3 +12,5 @@ This is where you can create,edit and delete the article.
 ![Article Page](https://github.com/user-attachments/assets/64aa45f6-3649-4dc9-9013-71815b4a47b7)
 This is the screen for messaging:
 ![Message Page](https://github.com/user-attachments/assets/1e535fde-54df-463e-8b79-58ec6ff7d505)
+This is where we can edit our profile deatils:
+![Profile Page](https://github.com/user-attachments/assets/ebf7230a-0c3d-4f63-8045-004f44e4ea69)
