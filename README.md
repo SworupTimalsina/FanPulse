@@ -10,3 +10,5 @@ This is the dashboard after successfull log in:
 ![Dashboard](https://github.com/user-attachments/assets/4628599f-5ec4-432d-b0d0-77131f1a0b7b)
 This is where you can create,edit and delete the article.
 ![Article Page](https://github.com/user-attachments/assets/64aa45f6-3649-4dc9-9013-71815b4a47b7)
+This is the screen for messaging:
+![Message Page](https://github.com/user-attachments/assets/1e535fde-54df-463e-8b79-58ec6ff7d505)
